@@ -616,10 +616,14 @@ public struct Moment: Comparable {
     ///     // standard is now "1973-09-04 00:00:00 GMT+01:00"
     ///
     /// - parameter dateFormat: A valid format string.
+    /// - parameter amSymbol: A valid string for AMSymbol.
+    /// - parameter pmSymbol: A valid string for PMSymbol.
     ///
     /// - returns: A string representing the current moment.
-    public func format(_ dateFormat: String = "yyyy-MM-dd HH:mm:ss ZZZZ") -> String {
+    public func format(_ dateFormat: String = "yyyy-MM-dd HH:mm:ss ZZZZ", amSymbol : String = "am", pmSymbol: String = "pm") -> String {
         formatter.dateFormat = dateFormat
+        formatter.amSymbol = amSymbol
+        formatter.pmSymbol = pmSymbol
         formatter.timeZone = timeZone
         formatter.locale = locale
         return formatter.string(from: date)
