@@ -645,6 +645,27 @@ public struct Moment: Comparable {
         formatter.locale = locale
         return formatter.string(from: date)
     }
+    
+    /// Formats the current moment using the string and AM / PM symbols passed as parameter.
+    /// If no format is specified, the default format is `"yyyy-MM-dd HH:mm:ss ZZZZ"`
+    ///
+    ///     let birthday = moment("1973-09-04")
+    ///     let standard = birthday.format()
+    ///     // standard is now "1973-09-04 00:00:00 GMT+01:00"
+    ///
+    /// - parameter dateFormat: A valid format string.
+    /// - parameter amSymbol: A valid string for AMSymbol.
+    /// - parameter pmSymbol: A valid string for PMSymbol.
+    ///
+    /// - returns: A string representing the current moment.
+    public func formatWithSymbol(_ dateFormat: String = "yyyy-MM-dd HH:mm:ss ZZZZ") -> String {
+        formatter.dateFormat = dateFormat
+        formatter.amSymbol = "am"
+        formatter.pmSymbol = "pm"
+        formatter.timeZone = timeZone
+        formatter.locale = locale
+        return formatter.string(from: date)
+    }
 
     /// Formats the current moment using the string and timezone passed as parameter.
     /// If no format is specified, the default format is `"yyyy-MM-dd HH:mm:ss ZZZZ"`
